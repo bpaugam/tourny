@@ -1,0 +1,114 @@
+Player:
+  type: object
+  properties:
+    id:
+      type: integer
+      readOnly: true
+    firstName:
+      type: string
+      required: true
+    lastName:
+      type: string
+      required: true
+    pictureHref:
+      type: string
+      format: uri
+
+Team:
+  type: object
+  properties:
+    id:
+      type: integer
+      readOnly: true
+    name:
+      type: string
+      required: true
+    tournamentId:
+      type: integer
+      required: true
+
+Membership:
+  type: object
+  properties:
+    teamId:
+      type: integer
+      required: true
+    playerId:
+      type: integer
+      required: true
+
+Tournament:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    status:
+      type: string
+      enum: [organizing, ongoing, complete]
+      readOnly: true
+    description:
+      type: string
+    type:
+      type: string
+      enum: ["singleElimination", "doubleElimination"]
+    roundsPerMatch:
+      type: integer
+      minimum: 1
+    startsOn:
+      type: string
+      format: date
+    endsOn:
+      type: string
+      format: date
+
+TournamentStatusUpdate:
+  type: object
+  properties:
+    
+
+Match:
+  type: object
+  properties:
+    id:
+      type: integer
+    date:
+      type: string
+      format: date
+    bracketPosition:
+      type: object
+      properties:
+        x:
+          type: integer
+        y:
+          type: integer
+    teams:
+      type: array
+      items:
+        $ref: "#/Team"
+    winnerId:
+      type: integer
+      readOnly: true
+
+Round:
+  type: object
+  properties:
+    index:
+      type: integer
+      minimum: 1
+    occurredAt:
+      type: string
+      format: date-time
+    scores:
+      type: array
+      items:
+        type: object
+        properties:
+          teamId:
+            type: integer
+          score:
+            type: integer
+    winnerId:
+      type: integer
+      readOnly: true

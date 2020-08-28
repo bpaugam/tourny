@@ -1,0 +1,32 @@
+/api/players:
+  $ref: "players.yaml#/methods"
+
+/api/players/{playerId}:
+  $ref: "player.yaml#/methods"
+
+/api/tounaments:
+  $ref: "tournaments.yaml#/methods"
+
+/api/tournaments/{tournamentId}:
+  $ref: "tournament.yaml#/methods"
+
+/api/tournaments/{tournamentId}/teams:
+  $ref: "tournament-teams.yaml#/methods"
+
+/api/tournaments/{tournamentId}/teams/{teamId}:
+  $ref: "tournament-team.yaml#/methods"
+
+/api/tournaments/{tournamentId}/teams/{teamId}/players:
+  $ref: "tournament-team-players.yaml#/methods"
+
+/api/tournaments/{tournamentId}/teams/{teamId}/players/{playerId}:
+  $ref: "tournament-team-player.yaml#/methods"
+
+/api/tournaments/{tournamentId}/matches:
+  $ref: "tournament-matches.yaml#/methods"
+
+/api/tournaments/{tournamentId}/matches/{x}-{y}:
+  $ref: "tournament-match.yaml#/methods"
+
+/api/tournaments/{tournamentId}/matches/{x}-{y}/rounds:
+  $ref: "tournament-match-rounds.yaml#/methods"
