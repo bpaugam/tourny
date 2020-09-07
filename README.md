@@ -34,15 +34,15 @@ Un tournoi, une fois terminé ou abandonné, ne peut plus être modifié.
 - Abandonner un tournoi.
 
 Bonus :
-- Consulter les matches de la semaine d'un tournoi / sur tous les tournois.
+- Consulter les matches de la semaine ou d'un jour pour un tournoi / sur tous les tournois.
 - Consulter les matches disputés par un joueur sur tous les tournois auxquels il a participé ou va participer.
-- Modéliser les ligues, qui organisent des tournois récurrents.
-- Modéliser l'organisation à laquelle une équipe d'un tournoi peut appartenir, et permettre de consulter tous les matches des équipes qu'elles a placé dans tous les tournois.
-- Permettre aux opposants d'un match d'en saisir et approuver ou non les scores et le résultat final.
+- Modéliser les ligues, qui organisent des tournois récurrents  (exemple : UEFA Champions League).
+- Modéliser l'organisation à laquelle une équipe d'un tournoi peut appartenir (exemple : le PSG), et permettre de consulter tous les matches des équipes qu'elles a placé dans tous les tournois.
+- Permettre aux opposants d'un match d'en saisir et approuver ou non les scores et le résultat final. En cas de désaccord, l'organisateur du tournoi tranche.
 
 ## Nota bene
 
-Dans ce MVP, le seul mode d'organisation des tournois est à élimination directe ("_single-elimination_" ou "_knockout_") et ne prévoiera qu'un nombre d'équipes de 2<sup>n</sup> (4, 8, 16, 32, 64, 128, 256...). Autrement dit, le tableau sera plus ou moins profond mais aura toujours une forme pyramidale.
+L'enjeu de cet exercice n'est pas de définir l'algorithme permettant de dresser le tableau du tournoi à partir des équipes. On considérera qu'un développeur brillant s'en sera occupé.
 
 ## Les questions à se poser
 - Comment modéliser la relation entre les différentes ressources ? Le concept de sous-ressource s'applique-t-il ?

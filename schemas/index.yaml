@@ -40,6 +40,15 @@ Tournament:
       type: integer
     name:
       type: string
+    owner:
+        type: object
+        properties:
+          id:
+            type: integer
+          firstName:
+            type: string
+          lastName:
+            type: string
     status:
       type: string
       enum: [organizing, ongoing, complete, abandonned]
