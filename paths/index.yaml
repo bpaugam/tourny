@@ -25,8 +25,11 @@
 /api/tournaments/{tournamentId}/matches:
   $ref: "tournament-matches.yaml#/methods"
 
-/api/tournaments/{tournamentId}/matches/{x}-{y}:
+/api/tournaments/{tournamentId}/matches/{matchId}:
   $ref: "tournament-match.yaml#/methods"
 
-/api/tournaments/{tournamentId}/matches/{x}-{y}/rounds:
-  $ref: "tournament-match-rounds.yaml#/methods"
+/api/tournaments/{tournamentId}/matches/{matchId}/opponents:
+  $ref: "tournament-match-opponents.yaml#/methods"
+
+/api/tournaments/{tournamentId}/matches/{matchId}/games:
+  $ref: "tournament-match-games.yaml#/methods"

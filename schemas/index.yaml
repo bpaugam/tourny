@@ -52,8 +52,9 @@ Tournament:
       type: string
     type:
       type: string
-      enum: ["singleElimination", "doubleElimination"]
-    roundsPerMatch:
+      enum: ["singleElimination"]
+      comment: On ne supporte que cette option dans ce MVP
+    gamesPerMatch:
       type: integer
       minimum: 1
     startsOn:
@@ -76,13 +77,10 @@ Match:
     date:
       type: string
       format: date
-    bracketPosition:
-      type: object
-      properties:
-        x:
-          type: integer
-        y:
-          type: integer
+    round:
+      type: integer
+    index:
+      type: integer
     teams:
       type: array
       items:
@@ -91,7 +89,7 @@ Match:
       type: integer
       readOnly: true
 
-Round:
+Game:
   type: object
   properties:
     index:

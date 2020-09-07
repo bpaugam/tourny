@@ -21,7 +21,7 @@ params:
 
 methods:
   get:
-    operationId: getMatchRounds
+    operationId: getMatchGames
     tags:
       - $ref: "#/tag"
     parameters:
@@ -36,7 +36,7 @@ methods:
             schema:
               type: array
               items:
-                $ref: "../schemas/index.yaml#/Round"
+                $ref: "../schemas/index.yaml#/Game"
       401:
         description: Unauthorized
       404:
@@ -45,7 +45,7 @@ methods:
         description: Internal error
 
   post:
-    operationId: postMatchRounds
+    operationId: postMatchGames
     tags:
       - $ref: "#/tag"
     parameters:
@@ -56,14 +56,14 @@ methods:
       content:
         application/json:
           schema:
-            $ref: "../schemas/index.yaml#/Round"
+            $ref: "../schemas/index.yaml#/Game"
     responses:
       201:
         description: Created
         content:
           application/json:
             schema:
-              $ref: "../schemas/index.yaml#/Round"
+              $ref: "../schemas/index.yaml#/Game"
       401:
         description: Unauthorized
       403:

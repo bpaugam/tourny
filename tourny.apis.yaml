@@ -15,6 +15,18 @@ servers:
 paths:
   $ref: "paths/index.yaml"
 
+  # /tournaments/{id}/matches/{id}
+  # /tournaments/{id}/matches/{id}/opponents --> lecture seule
+  # /tournaments/{id}/matches/{id}/games --> lecture seule
+
+  # /tournaments/{id}/matches/games --> écriture et déclenche le set des /opponents du match suivant
+
+
+  # POST /tournaments/{id}/rank/{8}/matches
+
+
+  # POST /tournaments/{id}/rank/{8}/matches
+
 components:
   schemas:
     $ref: "schemas/index.yaml"
