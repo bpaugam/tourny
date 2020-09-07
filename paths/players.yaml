@@ -3,9 +3,23 @@ methods:
     operationId: getPlayers
     tags:
       - Players
+    parameters:
+      - in: header
+        name: Range
+        schema:
+          type: string
+          format: items={start}-{end}
+          default: items=0-9
+        required: true
     responses:
-      200:
-        description: OK
+      206:
+        description: Partial Content
+        headers:
+          Content-Range:
+            description: items={start}-{end}/{total}
+            schema:
+              type: string
+              example: items=0-9/200
         content:
           application/json:
             schema:

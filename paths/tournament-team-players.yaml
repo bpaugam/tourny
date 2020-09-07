@@ -37,15 +37,15 @@ methods:
       500:
         description: Internal error
 
-  post:
-    operationId: postTournamentTeamPlayer
+  put:
+    operationId: putTournamentTeamPlayers
     tags:
       - $ref: "#/tag"
     requestBody:
       content:
         application/json:
           schema:
-            $ref: "../schemas/index.yaml#/Player"
+            $ref: "../schemas/index.yaml#/TeamPlayer"
     responses:
       201:
         description: Created
@@ -53,6 +53,20 @@ methods:
           application/json:
             schema:
               $ref: "../schemas/index.yaml#/Player"
+      401:
+        description: Unauthorized
+      403:
+        description: Forbidden
+      500:
+        description: Internal error
+  
+  delete:
+    operationId: deleteTournamentTeamPlayers
+    tags:
+      - $ref: "#/tag"
+    responses:
+      204:
+        description: No Content
       401:
         description: Unauthorized
       403:

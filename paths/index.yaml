@@ -10,6 +10,9 @@
 /api/tournaments/{tournamentId}:
   $ref: "tournament.yaml#/methods"
 
+/api/tournaments/{tournamentId}/launch:
+  $ref: "tournament-launch.yaml#/methods"
+
 /api/tournaments/{tournamentId}/teams:
   $ref: "tournament-teams.yaml#/methods"
 
@@ -33,3 +36,6 @@
 
 /api/tournaments/{tournamentId}/matches/{matchId}/games:
   $ref: "tournament-match-games.yaml#/methods"
+
+/api/tournaments/{tournamentId}/matches/{matchId}/winner/{teamId}:
+  $ref: "tournament-match-winner.yaml#/methods"

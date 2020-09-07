@@ -6,12 +6,24 @@ params:
     required: true
     schema:
       type: integer
-  matchId:
-    name: matchId
-    in: path
-    required: true
+  round:
+    name: round
+    in: query
     schema:
       type: integer
+      minimum: 0
+  index:
+    name: index
+    in: query
+    schema:
+      type: integer
+      minimum: 0
+  teamId:
+    name: teamId
+    in: query
+    schema:
+      type: integer
+      minimum: 1
 
 methods:
   get:
@@ -20,6 +32,9 @@ methods:
       - $ref: "#/tag"
     parameters:
       - $ref: "#/params/tournamentId"
+      - $ref: "#/params/round"
+      - $ref: "#/params/index"
+      - $ref: "#/params/teamId"
     responses:
       200:
         description: OK

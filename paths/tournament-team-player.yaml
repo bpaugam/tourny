@@ -42,19 +42,14 @@ methods:
       500:
         description: Internal error
 
-  patch:
-    operationId: patchTournamentTeamPlayer
+  put:
+    operationId: putTournamentTeamPlayer
     parameters:
       - $ref: "#/params/tournamentId"
       - $ref: "#/params/teamId"
       - $ref: "#/params/playerId"
     tags:
       - $ref: "#/tag"
-    requestBody:
-      content:
-        application/json:
-          schema:
-            $ref: "../schemas/index.yaml#/Player"
     responses:
       200:
         description: OK

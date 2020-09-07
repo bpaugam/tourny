@@ -3,15 +3,23 @@ methods:
     operationId: getTournaments
     tags:
       - "Tournaments"
+    parameters:
+      - in: header
+        name: Range
+        schema:
+          type: string
+          format: items={start}-{end}
+          default: items=0-9
+        required: true
     responses:
-      200:
-        description: OK
-        content:
-          application/json:
+      206:
+        description: Partial Content
+        headers:
+          Content-Range:
+            description: items={start}-{end}/{total}
             schema:
-              type: array
-              items:
-                $ref: "../schemas/index.yaml#/Tournament"
+              type: string
+              example: items=0-9/200
       401:
         description: Unauthorized
       404:

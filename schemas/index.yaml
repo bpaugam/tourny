@@ -27,15 +27,11 @@ Team:
       type: integer
       required: true
 
-Membership:
+TeamPlayer:
   type: object
   properties:
-    teamId:
+    id:
       type: integer
-      required: true
-    playerId:
-      type: integer
-      required: true
 
 Tournament:
   type: object
@@ -46,7 +42,7 @@ Tournament:
       type: string
     status:
       type: string
-      enum: [organizing, ongoing, complete]
+      enum: [organizing, ongoing, complete, abandonned]
       readOnly: true
     description:
       type: string
@@ -55,8 +51,8 @@ Tournament:
       enum: ["singleElimination"]
       comment: On ne supporte que cette option dans ce MVP
     gamesPerMatch:
-      type: integer
-      minimum: 1
+      type: string
+      enum: ["sudden death", "best of three", "best of five"]
     startsOn:
       type: string
       format: date
@@ -67,7 +63,9 @@ Tournament:
 TournamentStatusUpdate:
   type: object
   properties:
-    
+    type:
+      type: string
+      enum: ["launch", "cancel", "complete", "abandon"]
 
 Match:
   type: object
@@ -81,8 +79,9 @@ Match:
       type: integer
     index:
       type: integer
-    teams:
+    opponents:
       type: array
+      maxItems: 2
       items:
         $ref: "#/Team"
     winnerId:
@@ -100,6 +99,7 @@ Game:
       format: date-time
     scores:
       type: array
+      maxItems: 2
       items:
         type: object
         properties:
@@ -107,6 +107,6 @@ Game:
             type: integer
           score:
             type: integer
-    winnerId:
+    winningTeamId:
       type: integer
       readOnly: true

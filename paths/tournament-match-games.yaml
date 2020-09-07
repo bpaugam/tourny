@@ -6,14 +6,8 @@ params:
     required: true
     schema:
       type: integer
-  x:
-    name: x
-    in: path
-    required: true
-    schema:
-      type: integer
-  y:
-    name: y
+  matchId:
+    name: matchId
     in: path
     required: true
     schema:
@@ -26,8 +20,7 @@ methods:
       - $ref: "#/tag"
     parameters:
       - $ref: "#/params/tournamentId"
-      - $ref: "#/params/x"
-      - $ref: "#/params/y"
+      - $ref: "#/params/matchId"
     responses:
       200:
         description: OK
@@ -50,8 +43,7 @@ methods:
       - $ref: "#/tag"
     parameters:
       - $ref: "#/params/tournamentId"
-      - $ref: "#/params/x"
-      - $ref: "#/params/y"
+      - $ref: "#/params/matchId"
     requestBody:
       content:
         application/json:
