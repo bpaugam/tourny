@@ -13,6 +13,9 @@
 /api/tournaments/{tournamentId}/launch:
   $ref: "tournament-launch.yaml#/methods"
 
+/api/tournaments/{tournamentId}/termination:
+  $ref: "tournament-termination.yaml#/methods"
+
 /api/tournaments/{tournamentId}/teams:
   $ref: "tournament-teams.yaml#/methods"
 
@@ -31,8 +34,8 @@
 /api/tournaments/{tournamentId}/matches/{matchId}:
   $ref: "tournament-match.yaml#/methods"
 
-/api/tournaments/{tournamentId}/matches/{matchId}/opponents:
-  $ref: "tournament-match-opponents.yaml#/methods"
+/api/tournaments/{tournamentId}/matches/{matchId}/teams:
+  $ref: "tournament-match-teams.yaml#/methods"
 
 /api/tournaments/{tournamentId}/matches/{matchId}/games:
   $ref: "tournament-match-games.yaml#/methods"

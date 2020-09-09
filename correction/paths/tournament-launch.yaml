@@ -1,1 +1,79 @@
+params:
+  tournamentId:
+    name: tournamentId
+    in: path
+    required: true
+    schema:
+      type: integer
+
 methods:
+  get:
+    operationId: getTournamentLaunch
+    tags:
+      - "Tournaments"
+    parameters:
+      - $ref: "#/params/tournamentId"
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/index.yaml#/TournamentLaunch"
+      401:
+        description: Unauthorized
+      404:
+        description: Not found
+      500:
+        description: Internal error
+
+  put:
+    operationId: launchTournament
+    tags:
+      - "Tournaments"
+    parameters:
+      - $ref: "#/params/tournamentId"
+      - name: Content-Length
+        in: headers
+        schema:
+          type: integer
+          default: 0
+          minimum: 0
+          maximum: 0
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/index.yaml#/TournamentLaunch"
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/index.yaml#/TournamentLaunch"
+      401:
+        description: Unauthorized
+      403:
+        description: Forbidden
+      404:
+        description: Not found
+      500:
+        description: Internal error
+
+  delete:
+    operationId: cancelTournamentLaunch
+    tags:
+      - "Tournaments"
+    parameters:
+      - $ref: "#/params/tournamentId"
+    responses:
+      204:
+        description: No Content
+      401:
+        description: Unauthorized
+      403:
+        description: Forbidden
+      500:
+        description: Internal error

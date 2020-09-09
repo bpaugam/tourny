@@ -15,7 +15,7 @@ params:
 
 methods:
   get:
-    operationId: getMatchOpponents
+    operationId: getMatchTeams
     tags:
       - $ref: "#/tag"
     parameters:

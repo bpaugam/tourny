@@ -4,6 +4,20 @@ methods:
     tags:
       - Players
     parameters:
+      - in: query
+        name: search
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+          example: "John,Doe"
+      - in: query
+        name: sort
+        schema:
+          type: string
+          enum: [lastName, -lastName, firstName, -firstName]
       - in: header
         name: Range
         schema:

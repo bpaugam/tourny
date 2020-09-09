@@ -26,6 +26,11 @@ Team:
     tournamentId:
       type: integer
       readOnly: true
+    players:
+      type: array
+      items: 
+        $ref: "#/Player"
+      readOnly: true
 
 TeamPlayer:
   type: object
@@ -69,12 +74,32 @@ Tournament:
       type: string
       format: date
 
-TournamentStatusUpdate:
+TournamentLaunch:
   type: object
   properties:
-    type:
+    createdAt:
       type: string
-      enum: ["launch", "cancel", "complete", "abandon"]
+      format: date-time
+      readOnly: true
+    authorId:
+      type: integer
+      minimum: 1
+      readOnly: true
+
+TournamentTermination:
+  type: object
+  properties:
+    type: 
+      type: string
+      enum: ["completion", "abandonment"]
+    createdAt:
+      type: string
+      format: date-time
+      readOnly: true
+    authorId:
+      type: integer
+      minimum: 1
+      readOnly: true
 
 Match:
   type: object
@@ -86,11 +111,14 @@ Match:
       format: date
     round:
       type: integer
+      readOnly: true
     index:
       type: integer
-    opponents:
+      readOnly: true
+    teams:
       type: array
       maxItems: 2
+      readOnly: true
       items:
         $ref: "#/Team"
     winnerId:
