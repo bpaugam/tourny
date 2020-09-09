@@ -4,6 +4,21 @@ methods:
     tags:
       - "Tournaments"
     parameters:
+      - in: query
+        name: search
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+          example: "John,Doe"
+      - in: query
+        name: sort
+        schema:
+          type: string
+          enum: [id, -id, name, -name, createdAt, -createdAt, launchedAt, -launchedAt]
+          default: id
       - in: header
         name: Range
         schema:

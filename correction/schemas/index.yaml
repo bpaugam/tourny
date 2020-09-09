@@ -73,6 +73,18 @@ Tournament:
     endsOn:
       type: string
       format: date
+    createdAt:
+      type: string
+      format: date-time
+      readOnly: true
+    authorId:
+      type: integer
+      minimum: 1
+      readOnly: true
+    launchedAt:
+      type: string
+      format: date-time
+      readOnly: true
 
 TournamentLaunch:
   type: object
