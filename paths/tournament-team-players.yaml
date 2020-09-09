@@ -45,7 +45,9 @@ methods:
       content:
         application/json:
           schema:
-            $ref: "../schemas/index.yaml#/TeamPlayer"
+            type: array
+            items:
+              $ref: "../schemas/index.yaml#/TeamPlayer"
     responses:
       201:
         description: Created

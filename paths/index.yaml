@@ -4,7 +4,7 @@
 /api/players/{playerId}:
   $ref: "player.yaml#/methods"
 
-/api/tounaments:
+/api/tournaments:
   $ref: "tournaments.yaml#/methods"
 
 /api/tournaments/{tournamentId}:
