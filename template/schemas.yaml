@@ -1,0 +1,17 @@
+SampleRessource:
+  type: object
+  properties:
+    id:
+      type: integer
+      readOnly: true
+    name:
+      type: string
+    date:
+      type: string
+      format: date-time
+    collection:
+      type: array
+      minItems: 0
+      maxItems: 100
+      items:
+        type: integer

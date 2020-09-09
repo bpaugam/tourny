@@ -1,0 +1,14 @@
+# Instructions :
+# 1. Entrer le path vers la ressource
+# 2.1 En cas de collection, copier le contenu de /samples/path.collection.template.yaml
+# 2.2 En cas de ressource unitaire, copier le contenu de /samples/path.single.template.yaml
+# 3. Rechercher et remplacer "{schema}" par le nom de votre schema dans le fichier "schemas.yaml"
+#
+# N.B. : vous pouvez tout à fait créer un fichier par path et recourir à des $ref, mais ce sera certainement plus fastidieux.
+# Sinon, le raccourci "Ctrl + (K => &)" ie "ctrl + K puis ctrl + &", permet de fold toutes les instructions racines (pratique !)
+
+/api/resources:
+  ...
+
+/api/resources/{id}:
+  ...
