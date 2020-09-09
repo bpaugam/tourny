@@ -34,6 +34,7 @@ Un tournoi, une fois terminé ou abandonné, ne peut plus être modifié.
 - Abandonner un tournoi.
 
 Bonus :
+- Modéliser la possibilité pour une équipe de déclarer forfait.
 - Consulter les matches de la semaine ou d'un jour pour un tournoi / sur tous les tournois.
 - Consulter les matches disputés par un joueur sur tous les tournois auxquels il a participé ou va participer.
 - Modéliser les ligues, qui organisent des tournois récurrents  (exemple : UEFA Champions League).
