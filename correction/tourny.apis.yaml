@@ -7,7 +7,9 @@ info:
     email: bpaugam@lucca.fr
 tags:
   - name: Players
-    description: ''
+    description: 'The users of the application'
+  - name: 'Tournaments'
+    description: 'The actual tournaments managed through the application'
 servers:
   - url: 'http://127.0.0.1:4010'
     description: prism mock server
