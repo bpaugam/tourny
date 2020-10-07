@@ -130,6 +130,12 @@ paths:
           description: Not found
         '500':
           description: Internal error
+    parameters:
+      - schema:
+          type: integer
+        name: playerId
+        in: path
+        required: true
   /api/tournaments:
     $ref: paths/tournaments.yaml#/methods
   '/api/tournaments/{tournamentId}':
