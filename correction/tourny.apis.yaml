@@ -87,10 +87,17 @@ paths:
         '500':
           description: Internal error
 
-  /api/players/{playerId}:
+  /api/test:
+      get:
+        operationId: getTest
+        description: 'Test'
+        tags:
+          - 'Players'
+
+  /api/playerss/{playerId}:
     get:
       operationId: getPlayer
-      description: 'Retrieve single player'
+      description: 'Retrieve a single player'
       tags:
         - Players
       parameters:
