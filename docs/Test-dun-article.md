@@ -1,3 +1,7 @@
+---
+tags: [Players]
+---
+
 # Test-dun-article
 
 The beginning of an awesome article...
