@@ -99,13 +99,7 @@ paths:
           description: Forbidden
         '500':
           description: Internal error
-  /api/test:
-    get:
-      operationId: getTest
-      description: Test
-      tags:
-        - Players
-  '/api/playerss/{playerId}':
+  /api/players/{playerId}:
     get:
       operationId: getPlayer
       description: Retrieve a single player
@@ -130,12 +124,7 @@ paths:
           description: Not found
         '500':
           description: Internal error
-    parameters:
-      - schema:
-          type: integer
-        name: playerId
-        in: path
-        required: true
+    parameters: []
   /api/tournaments:
     $ref: paths/tournaments.yaml#/methods
   '/api/tournaments/{tournamentId}':
