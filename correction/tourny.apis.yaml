@@ -3,16 +3,132 @@ info:
   title: "Tourny APIs"
   description: "API documentation for all APIs regarding the Tourny app."
   version: "0.0.1"
+  contact: 
+    email: 'bpaugam@lucca.fr'
 tags:
 - name: Players
   description: ""
 
 servers:
-  - url: 'http://127.0.0.1:4010/'
+  - url: 'http://127.0.0.1:4010'
     description: prism mock server
 
 paths:
-  $ref: "paths/index.yaml"
+  /api/players:
+    get:
+      operationId: getPlayers
+      description: 'Retrieve players'
+      tags:
+        - Players
+      parameters:
+        - in: query
+          name: search
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+            example: ["John,Doe"]
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum: [lastName, -lastName, firstName, -firstName]
+        - in: header
+          name: Range
+          schema:
+            type: string
+            format: items={start}-{end}
+            default: items=0-9
+          required: true
+      responses:
+        '206':
+          description: Partial Content
+          headers:
+            Content-Range:
+              description: items={start}-{end}/{total}
+              schema:
+                type: string
+                example: items=0-9/200
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "schemas/index.yaml#/Player"
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not found
+        '500':
+          description: Internal error
+
+    post:
+      operationId: postPlayer
+      description: 'Create a new player'
+      tags:
+        - Players
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "schemas/index.yaml#/Player"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "schemas/index.yaml#/Player"
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal error
+
+  /api/players/{playerId}:
+    $ref: "paths/player.yaml"
+
+  /api/tournaments:
+    $ref: "paths/tournaments.yaml#/methods"
+
+  /api/tournaments/{tournamentId}:
+    $ref: "paths/tournament.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/launch:
+    $ref: "paths/tournament-launch.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/termination:
+    $ref: "paths/tournament-termination.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/teams:
+    $ref: "paths/tournament-teams.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/teams/{teamId}:
+    $ref: "paths/tournament-team.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/teams/{teamId}/players:
+    $ref: "paths/tournament-team-players.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/teams/{teamId}/players/{playerId}:
+    $ref: "paths/tournament-team-player.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/matches:
+    $ref: "paths/tournament-matches.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/matches/{matchId}:
+    $ref: "paths/tournament-match.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/matches/{matchId}/teams:
+    $ref: "paths/tournament-match-teams.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/matches/{matchId}/games:
+    $ref: "paths/tournament-match-games.yaml#/methods"
+
+  /api/tournaments/{tournamentId}/matches/{matchId}/winner/{teamId}:
+    $ref: "paths/tournament-match-winner.yaml#/methods"
 
 components:
   schemas:
