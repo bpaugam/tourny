@@ -127,6 +127,7 @@ paths:
           description: Not found
         '500':
           description: Internal error
+      summary: Get a single player
     parameters: []
   /api/tournaments:
     $ref: paths/tournaments.yaml#/methods
