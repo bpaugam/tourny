@@ -1,23 +1,21 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
-  title: "Tourny APIs"
-  description: "API documentation for all APIs regarding the Tourny app."
-  version: "0.0.1"
-  contact: 
-    email: 'bpaugam@lucca.fr'
+  title: Tourny APIs
+  description: API documentation for all APIs regarding the Tourny app.
+  version: 0.0.1
+  contact:
+    email: bpaugam@lucca.fr
 tags:
-- name: Players
-  description: ""
-
+  - name: Players
+    description: ''
 servers:
   - url: 'http://127.0.0.1:4010'
     description: prism mock server
-
 paths:
   /api/players:
     get:
       operationId: getPlayers
-      description: 'Retrieve players'
+      description: Used to retrieve a sorted and paginated list of **players**. Max items per page is 100. Players are sorted by their last name (ascending) by default. The search parameter can be used to filter out players based on their first name and last names.
       tags:
         - Players
       parameters:
@@ -29,25 +27,32 @@ paths:
             type: array
             items:
               type: string
-            example: ["John,Doe"]
+            example:
+              - 'John,Doe'
+          description: Find a player by name.
         - in: query
           name: sort
           schema:
             type: string
-            enum: [lastName, -lastName, firstName, -firstName]
+            enum:
+              - lastName
+              - '-lastName'
+              - firstName
+              - '-firstName'
         - in: header
           name: Range
           schema:
             type: string
-            format: items={start}-{end}
+            format: 'items={start}-{end}'
             default: items=0-9
           required: true
+          description: Paging parameter. Takes two coma-separated arguments.
       responses:
         '206':
           description: Partial Content
           headers:
             Content-Range:
-              description: items={start}-{end}/{total}
+              description: 'items={start}-{end}/{total}'
               schema:
                 type: string
                 example: items=0-9/200
@@ -56,48 +61,54 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "schemas/index.yaml#/Player"
+                  $ref: schemas/index.yaml#/Player
+              examples:
+                example-1:
+                  value:
+                    - id: 0
+                      firstName: string
+                      lastName: string
+                      pictureHref: 'http://example.com'
         '401':
           description: Unauthorized
         '404':
           description: Not found
         '500':
           description: Internal error
+      summary: GetPlayers
     post:
       operationId: postPlayer
-      description: 'Create a new player'
+      description: Create a new player
       tags:
         - Players
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "schemas/index.yaml#/Player"
+              $ref: schemas/index.yaml#/Player
       responses:
         '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "schemas/index.yaml#/Player"
+                $ref: schemas/index.yaml#/Player
         '401':
           description: Unauthorized
         '403':
           description: Forbidden
         '500':
           description: Internal error
-
   /api/test:
-      get:
-        operationId: getTest
-        description: 'Test'
-        tags:
-          - 'Players'
-
-  /api/playerss/{playerId}:
+    get:
+      operationId: getTest
+      description: Test
+      tags:
+        - Players
+  '/api/playerss/{playerId}':
     get:
       operationId: getPlayer
-      description: 'Retrieve a single player'
+      description: Retrieve a single player
       tags:
         - Players
       parameters:
@@ -112,53 +123,39 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "schemas/index.yaml#/Player"
+                $ref: schemas/index.yaml#/Player
         '401':
           description: Unauthorized
         '404':
           description: Not found
         '500':
           description: Internal error
-
   /api/tournaments:
-    $ref: "paths/tournaments.yaml#/methods"
-
-  /api/tournaments/{tournamentId}:
-    $ref: "paths/tournament.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/launch:
-    $ref: "paths/tournament-launch.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/termination:
-    $ref: "paths/tournament-termination.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/teams:
-    $ref: "paths/tournament-teams.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/teams/{teamId}:
-    $ref: "paths/tournament-team.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/teams/{teamId}/players:
-    $ref: "paths/tournament-team-players.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/teams/{teamId}/players/{playerId}:
-    $ref: "paths/tournament-team-player.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/matches:
-    $ref: "paths/tournament-matches.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/matches/{matchId}:
-    $ref: "paths/tournament-match.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/matches/{matchId}/teams:
-    $ref: "paths/tournament-match-teams.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/matches/{matchId}/games:
-    $ref: "paths/tournament-match-games.yaml#/methods"
-
-  /api/tournaments/{tournamentId}/matches/{matchId}/winner/{teamId}:
-    $ref: "paths/tournament-match-winner.yaml#/methods"
-
+    $ref: paths/tournaments.yaml#/methods
+  '/api/tournaments/{tournamentId}':
+    $ref: paths/tournament.yaml#/methods
+  '/api/tournaments/{tournamentId}/launch':
+    $ref: paths/tournament-launch.yaml#/methods
+  '/api/tournaments/{tournamentId}/termination':
+    $ref: paths/tournament-termination.yaml#/methods
+  '/api/tournaments/{tournamentId}/teams':
+    $ref: paths/tournament-teams.yaml#/methods
+  '/api/tournaments/{tournamentId}/teams/{teamId}':
+    $ref: paths/tournament-team.yaml#/methods
+  '/api/tournaments/{tournamentId}/teams/{teamId}/players':
+    $ref: paths/tournament-team-players.yaml#/methods
+  '/api/tournaments/{tournamentId}/teams/{teamId}/players/{playerId}':
+    $ref: paths/tournament-team-player.yaml#/methods
+  '/api/tournaments/{tournamentId}/matches':
+    $ref: paths/tournament-matches.yaml#/methods
+  '/api/tournaments/{tournamentId}/matches/{matchId}':
+    $ref: paths/tournament-match.yaml#/methods
+  '/api/tournaments/{tournamentId}/matches/{matchId}/teams':
+    $ref: paths/tournament-match-teams.yaml#/methods
+  '/api/tournaments/{tournamentId}/matches/{matchId}/games':
+    $ref: paths/tournament-match-games.yaml#/methods
+  '/api/tournaments/{tournamentId}/matches/{matchId}/winner/{teamId}':
+    $ref: paths/tournament-match-winner.yaml#/methods
 components:
   schemas:
-    $ref: "schemas/index.yaml"
+    $ref: schemas/index.yaml
