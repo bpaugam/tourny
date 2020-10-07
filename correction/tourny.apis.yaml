@@ -75,10 +75,12 @@ paths:
           description: Not found
         '500':
           description: Internal error
-      summary: GetPlayers
+      summary: Get a list of players
+      security:
+        - Authorization header: []
     post:
       operationId: postPlayer
-      description: Create a new player
+      description: Used to create a new player in the application. Only `firstName` and `lastName` are required.
       tags:
         - Players
       requestBody:
@@ -99,7 +101,8 @@ paths:
           description: Forbidden
         '500':
           description: Internal error
-  /api/players/{playerId}:
+      summary: Create a new player
+  '/api/players/{playerId}':
     get:
       operationId: getPlayer
       description: Retrieve a single player
@@ -154,3 +157,11 @@ paths:
 components:
   schemas:
     $ref: schemas/index.yaml
+  securitySchemes:
+    Authorization header:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: 'When authenticating with a user token: `user=xxxxxx`. When using an application token: `application=xxxxxx`. Where `xxxxxx` is the token value.'
+security:
+  - Authorization header: []
